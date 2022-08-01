@@ -20,7 +20,7 @@ public:
 // class for queue functions
 // getsize()--- returns the size of queue
 // empty()---returns the bool value if the queue is empty or not
-// push()---enqueue function add a new pair at the end of queue
+// push()---enqueue function add a new pair at the ed of queue
 // front()--- returns the front pair of the queue
 // pop()--- delete the front element of the queue
 
@@ -97,7 +97,7 @@ typedef struct node
 int n; //size of the chess board
 
 int arr[100][100];		  //2-d array for bfs
-int end[2];				  //end co-ordinates
+int ed[2];				  //ed co-ordinates
 int start[2];			  //start co-ordinates
 Queue< pair<int, int> > q;  //queue for bfs
 vector< pair<int, int> > v; //vector for storing the moves
@@ -164,7 +164,7 @@ bool isvalid(int x, int y)
 	return false;
 }
 
-// checking for all 8 possible moves for a given co-ordinates until it reaches the end co-ordinates
+// checking for all 8 possible moves for a given co-ordinates until it reaches the ed co-ordinates
 
 void moves(node **root)
 {
@@ -181,7 +181,7 @@ void moves(node **root)
 			arr[x + 1][y + 2] = arr[x][y] + 1;
 			insert(root, {x, y}, {x + 1, y + 2});
 
-			if (x + 1 == end[0] && y + 2 == end[1])
+			if (x + 1 == ed[0] && y + 2 == ed[1])
 			{
 				return;
 			}
@@ -194,7 +194,7 @@ void moves(node **root)
 			arr[x - 1][y + 2] = arr[x][y] + 1;
 			insert(root, {x, y}, {x - 1, y + 2});
 
-			if (x - 1 == end[0] && y + 2 == end[1])
+			if (x - 1 == ed[0] && y + 2 == ed[1])
 			{
 				return;
 			}
@@ -207,7 +207,7 @@ void moves(node **root)
 			arr[x + 1][y - 2] = arr[x][y] + 1;
 			insert(root, {x, y}, {x + 1, y - 2});
 
-			if (x + 1 == end[0] && y - 2 == end[1])
+			if (x + 1 == ed[0] && y - 2 == ed[1])
 			{
 				return;
 			}
@@ -220,7 +220,7 @@ void moves(node **root)
 			arr[x - 1][y - 2] = arr[x][y] + 1;
 			insert(root, {x, y}, {x - 1, y - 2});
 
-			if (x - 1 == end[0] && y - 2 == end[1])
+			if (x - 1 == ed[0] && y - 2 == ed[1])
 			{
 				return;
 			}
@@ -233,7 +233,7 @@ void moves(node **root)
 			arr[x + 2][y + 1] = arr[x][y] + 1;
 			insert(root, {x, y}, {x + 2, y + 1});
 
-			if (x + 2 == end[0] && y + 1 == end[1])
+			if (x + 2 == ed[0] && y + 1 == ed[1])
 			{
 				return;
 			}
@@ -246,7 +246,7 @@ void moves(node **root)
 			arr[x - 2][y + 1] = arr[x][y] + 1;
 			insert(root, {x, y}, {x - 2, y + 1});
 
-			if (x - 2 == end[0] && y + 1 == end[1])
+			if (x - 2 == ed[0] && y + 1 == ed[1])
 			{
 				return;
 			}
@@ -258,7 +258,7 @@ void moves(node **root)
 			arr[x - 2][y - 1] = arr[x][y] + 1;
 			insert(root, {x, y}, {x - 2, y - 1});
 
-			if (x - 2 == end[0] && y - 1 == end[1])
+			if (x - 2 == ed[0] && y - 1 == ed[1])
 			{
 				return;
 			}
@@ -271,7 +271,7 @@ void moves(node **root)
 			arr[x + 2][y - 1] = arr[x][y] + 1;
 			insert(root, {x, y}, {x + 2, y - 1});
 
-			if (x + 2 == end[0] && y - 1 == end[1])
+			if (x + 2 == ed[0] && y - 1 == ed[1])
 			{
 				return;
 			}
@@ -308,8 +308,8 @@ void input()
 	}
 	cout << endl
 		 << "enter the final co-ordinates ";
-	cin >> end[0] >> end[1];
-	if (!isvalid(end[0], end[1]))
+	cin >> ed[0] >> ed[1];
+	if (!isvalid(ed[0], ed[1]))
 	{
 		cout << endl
 			 << "invalid input " << endl
@@ -341,15 +341,15 @@ int main()
 	root->data = {start[0], start[1]};
 	moves(&root);
 	cout << endl;
-	if (arr[end[0]][end[1]] == 0)
+	if (arr[ed[0]][ed[1]] == 0)
 	{
 		cout << "no possible path to reach the given point" << endl;
 	}
 	else
 	{
 		cout << endl
-			 << "number of steps to reach {" << end[0] << "," << end[1] << "} are - " << arr[end[0]][end[1]] - 1 << endl;
-		bool a = print(root, {end[0], end[1]});
+			 << "number of steps to reach {" << ed[0] << "," << ed[1] << "} are - " << arr[ed[0]][ed[1]] - 1 << endl;
+		bool a = print(root, {ed[0], ed[1]});
 		cout << endl;
 		for (int i = v.size() - 1; i > 0; i--)
 		{
